@@ -1,0 +1,47 @@
+﻿@model PagedList.PagedList<Shop.Models.Database.Product>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<div id="services">
+    <h1>@ViewBag.Seleted.Name</h1>
+    <div id="main">
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>
+                    <a href="#">
+                        <img src="@Url.Action("GetImage","AdminProduct",new { id= item.ID })" alt="Img" width="100px">
+                        <h5>@item.Name</h5>
+                    </a>
+                    <p>
+                        @item.Description
+                    </p>
+                </li>
+            }
+        </ul>
+        @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }))
+    </div>
+    <div id="sidebar">
+        <h3>Product Category</h3>
+        <ul>
+            @foreach (var item in ViewBag.ListCatgory)
+            {
+                if (item.ID == ViewBag.Seleted.ID)
+                {
+                    <li class="selected">
+                        <a href="@Url.Action("Index","CustomerProduct",new { id=item.ID })">@item.Name</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action("Index","CustomerProduct",new { id=item.ID })">@item.Name</a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+﻿@model PagedList.PagedList<Shop.Models.Database.ProductCategory>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <p>Name</p>
+        </th>
+        <th>
+            <p>Title</p>
+        </th>
+        <th>
+            <p>OrderDisplay</p>
+        </th>
+        <th>
+            <p>State</p>
+        </th>
+        <th>
+            <p>ParentID</p>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDisplay)
+        </td>
+        <td>
+            @if (item.State == true)
+            {<p>Kinh Hoat</p>}
+            else
+            {
+                <p>Khoa</p>
+            }
+
+        </td>
+        <td>
+            @if (item.ParentID == 0)
+            {
+                <p>Khong Co</p>
+            }
+            else
+            {
+                string a = new Shop.Models.DataModel.ProductCategoryModels().GetNameById(item.ParentID);
+                <p>@a</p>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }))
+@Html.ActionLink("Admin","Index","AdminHome")

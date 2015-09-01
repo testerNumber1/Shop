@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Page = "Admin";
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@HttpContext.Current.Session[Shop.Models.SupportModel.SessionKey.LogIn]</h2>
+@Html.ActionLink("ProductCategory", "Index", "AdminProductCategory")||
+@Html.ActionLink("Product", "Index", "AdminProduct")
