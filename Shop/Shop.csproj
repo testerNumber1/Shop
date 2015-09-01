@@ -117,9 +117,11 @@
     <Content Include="Content\screen.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
+    <Content Include="demo.txt" />
     <Content Include="fonts\Caudex-Regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\Muli-Light.svg" />
+    <Content Include="github.txt" />
     <Content Include="Global.asax" />
     <Content Include="MyCommet.txt" />
     <Content Include="Scripts\bootstrap.js" />
